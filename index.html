@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latihan Soal: Peran Kamu dalam Keluarga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #7c3aed;
+      --accent: #f59e0b;
+      --bg: #f0fdf4;
+      --card: #ffffff;
+      --text: #1e293b;
+    }
+    * { box-sizing: border-box; font-family: 'Nunito', sans-serif; }
+    body {
+      margin: 0; padding: 16px;
+      background: linear-gradient(180deg, #bae6fd 0%, #dcfce7 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .container { max-width: 680px; margin: 0 auto; }
+    .header-card {
+      background: #fef3c7; border: 3px solid #f59e0b;
+      border-radius: 20px; padding: 20px; text-align: center;
+      box-shadow: 0 6px 0 #d97706; margin-bottom: 20px;
+    }
+    .badge {
+      display: inline-block; background: #92400e; color: #fff;
+      padding: 4px 14px; border-radius: 99px; font-size: 0.85rem; font-weight: 700;
+    }
+    h1 {
+      font-family: 'Fredoka', sans-serif; color: #78350f;
+      margin: 10px 0 6px; font-size: 1.6rem;
+    }
+    .motto { font-size: 0.9rem; color: #92400e; font-weight: 600; margin: 0; }
+    .card {
+      background: var(--card); border-radius: 18px; padding: 20px;
+      margin-bottom: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      border: 2px solid #e2e8f0;
+    }
+    .section-title {
+      font-family: 'Fredoka', sans-serif; color: #fff;
+      background: var(--primary); padding: 10px 16px;
+      border-radius: 12px; font-size: 1.15rem; margin: 0 0 12px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .section-title.purple { background: var(--secondary); }
+    .input-group { margin-bottom: 14px; }
+    .input-group label { display: block; font-weight: 700; margin-bottom: 6px; }
+    .input-text {
+      width: 100%; padding: 12px; border: 2px solid #cbd5e1;
+      border-radius: 12px; font-size: 1rem; outline: none;
+    }
+    .input-text:focus { border-color: var(--primary); }
+    .question-item {
+      padding: 16px 0; border-bottom: 2px dashed #e2e8f0;
+    }
+    .question-item:last-child { border-bottom: none; }
+    .q-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 8px; margin-bottom: 10px; font-weight: 700; font-size: 1.05rem;
+    }
+    .level-tag {
+      font-size: 0.7rem; padding: 2px 8px; border-radius: 6px;
+      color: #fff; background: #0284c7; flex-shrink: 0;
+    }
+    .level-tag.hots { background: #6d28d9; }
+    .options { display: grid; gap: 8px; }
+    .option-label {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 14px; border: 2px solid #e2e8f0;
+      border-radius: 12px; cursor: pointer; transition: 0.2s;
+      font-size: 1rem;
+    }
+    .option-label:has(input:checked) {
+      background: #eff6ff; border-color: var(--primary); font-weight: 700;
+    }
+    input[type="radio"] { transform: scale(1.25); accent-color: var(--primary); }
+    .illustration-box {
+      background: #fef9c3; border: 2px solid #fde047; border-radius: 14px;
+      padding: 12px; text-align: center; margin: 10px 0;
+    }
+    .btn-submit {
+      width: 100%; padding: 16px; background: #16a34a; color: #fff;
+      border: none; border-radius: 16px; font-family: 'Fredoka', sans-serif;
+      font-size: 1.25rem; cursor: pointer; box-shadow: 0 5px 0 #15803d;
+      margin-top: 10px;
+    }
+    .btn-submit:active { transform: translateY(3px); box-shadow: 0 2px 0 #15803d; }
+    .btn-submit:disabled { background: #94a3b8; box-shadow: none; }
+    #resultModal {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+      padding: 20px; align-items: center; justify-content: center; z-index: 99;
+    }
+    .modal-content {
+      background: #fff; border-radius: 24px; padding: 24px;
+      max-width: 420px; width: 100%; text-align: center;
+      border: 4px solid #f59e0b;
+    }
+    .score-circle {
+      width: 110px; height: 110px; border-radius: 50%;
+      background: #fef3c7; border: 4px solid #f59e0b;
+      display: flex; align-items: center; justify-content: center;
+      margin: 16px auto; font-family: 'Fredoka', sans-serif;
+      font-size: 2.2rem; color: #b45309; font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header-card">
+    <span class="badge">IPA dan IPS • Kelas 1 SD</span>
+    <h1>Bab: Peran Kamu dalam Keluarga</h1>
+    <p class="motto">Kenali Keluargamu, Pahami Peranmu, Sayangi Keluargamu! ❤️</p>
+  </div>
+
+  <!-- Identitas Siswa -->
+  <div class="card">
+    <div class="input-group">
+      <label for="namaSiswa">Nama Lengkap Siswa:</label>
+      <input type="text" id="namaSiswa" class="input-text" placeholder="Ketik namamu di sini..." required>
+    </div>
+    <div class="input-group" style="margin-bottom:0;">
+      <label for="kelasSiswa">Kelas:</label>
+      <input type="text" id="kelasSiswa" class="input-text" value="1 SD" placeholder="Contoh: 1A">
+    </div>
+  </div>
+
+  <form id="quizForm">
+    <!-- Bagian A: Pilihan Ganda -->
+    <div class="card">
+      <h2 class="section-title">A. Pilihan Ganda (15 Soal)</h2>
+      <p style="margin-top:0; font-size:0.9rem; color:#475569;">Pilihlah jawaban yang paling tepat!</p>
+      <div id="pgContainer"></div>
+    </div>
+
+    <!-- Bagian B: Isian Singkat -->
+    <div class="card">
+      <h2 class="section-title purple">B. Isian Singkat (10 Soal)</h2>
+      <p style="margin-top:0; font-size:0.9rem; color:#475569;">Jawablah titik-titik di bawah ini dengan tepat!</p>
+      <div id="isianContainer"></div>
+    </div>
+
+    <button type="submit" id="submitBtn" class="btn-submit">Kirim Jawaban & Lihat Nilai 🚀</button>
+  </form>
+</div>
+
+<!-- Modal Hasil -->
+<div id="resultModal">
+  <div class="modal-content">
+    <h2 style="font-family:'Fredoka',sans-serif; color:#15803d; margin:0;">Hebat! Tugas Selesai 🎉</h2>
+    <p id="resNama" style="font-weight:700; margin:8px 0 0;"></p>
+    <div class="score-circle" id="resSkor">100</div>
+    <p id="resDetail" style="font-size:0.95rem; color:#475569;"></p>
+    <p id="syncStatus" style="font-size:0.85rem; color:#0284c7; font-weight:700;"></p>
+    <button onclick="location.reload()" style="margin-top:12px; padding:10px 20px; border:none; border-radius:12px; background:#2563eb; color:#fff; font-weight:700; cursor:pointer;">Kerjakan Ulang</button>
+  </div>
+</div>
+
+<script>
+  // GANTI URL DI BAWAH INI DENGAN URL WEB APP GOOGLE APPS SCRIPT ANDA
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby3kLN82OcyXX6seV_yMJPCsRk2g1ySvYvAXR1sC7pYdhTFcvxcFKkKTiXoncw0Hn_2/exec";
+
+  const soalPG = [
+    { q: "Siapa saja yang termasuk keluargamu?", level: "MOTS", opts: ["a. Teman", "b. Ayah, Ibu, dan saudara", "c. Guru", "d. Tetangga"], ans: 1 },
+    { q: "Peran ayah yang paling utama adalah ....", level: "MOTS", opts: ["a. memasak", "b. bekerja mencari nafkah", "c. belajar", "d. bermain"], ans: 1 },
+    { q: "Peran ibu di rumah adalah ....", level: "MOTS", opts: ["a. bekerja di kantor", "b. mengurus rumah dan merawat anak", "c. pergi ke sekolah", "d. bermain sepanjang hari"], ans: 1 },
+    { q: "Sebagai anak, kamu harus ....", level: "MOTS", opts: ["a. membantu orang tua", "b. bermalas-malasan", "c. marah kepada ibu", "d. tidak sekolah"], ans: 0 },
+    { 
+      q: "Gambar di bawah menunjukkan keluarga yang terdiri dari ....", 
+      level: "MOTS", 
+      hasImage: true,
+      opts: ["a. ayah, ibu, dan anak", "b. kakek, nenek, dan cucu", "c. paman, bibi, dan keponakan", "d. saudara dan sepupu"], 
+      ans: 0 
+    },
+    { q: "Silsilah keluarga adalah ....", level: "MOTS", opts: ["a. daftar pelajaran", "b. garis keturunan keluarga", "c. daftar teman", "d. daftar makanan"], ans: 1 },
+    { q: "Kakak dari ayah disebut ....", level: "MOTS", opts: ["a. paman", "b. bibi", "c. kakek", "d. nenek"], ans: 0 },
+    { q: "Adik perempuan dari ibu disebut ....", level: "MOTS", opts: ["a. paman", "b. bibi", "c. keponakan", "d. saudara"], ans: 1 },
+    { q: "Keponakan adalah anak dari ....", level: "MOTS", opts: ["a. saudara kita (kakak/adik)", "b. teman sekolah", "c. paman atau bibi", "d. kakek dan nenek"], ans: 0 },
+    { q: "Siapa yang termasuk keluarga ibu?", level: "MOTS", opts: ["a. ayah dan kakak", "b. kakek dan nenek", "c. paman dan bibi", "d. sepupu"], ans: 2 },
+    { q: "Mengapa kita harus menyayangi keluarga?", level: "HOTS", opts: ["a. agar diberi mainan", "b. agar hidup bahagia dan rukun", "c. agar kaya", "d. agar terkenal"], ans: 1 },
+    { q: "Jika ayah sakit, apa yang sebaiknya kamu lakukan?", level: "HOTS", opts: ["a. pergi bermain", "b. membantu dan mendoakan", "c. marah", "d. menonton TV"], ans: 1 },
+    { q: "Berikut yang bukan anggota keluarga adalah ....", level: "MOTS", opts: ["a. ayah", "b. ibu", "c. guru", "d. saudara"], ans: 2 },
+    { q: "Apa yang dimaksud dengan keluarga besar?", level: "HOTS", opts: ["a. keluarga yang tinggal jauh", "b. keluarga yang terdiri dari banyak anggota (kakek, nenek, paman, bibi)", "c. hanya ayah dan ibu", "d. hanya anak-anak"], ans: 1 },
+    { q: "Jika kamu memiliki sepupu, artinya ....", level: "MOTS", opts: ["a. saudara kandung", "b. anak paman atau bibi", "c. anak tetangga", "d. anak ibu"], ans: 1 }
+  ];
+
+  // Kunci kata kunci untuk penilaian otomatis Isian Singkat
+  const soalIsian = [
+    { q: "Ayah biasanya bekerja untuk ... keluarganya.", level: "MOTS", keys: ["nafkah", "menafkahi", "mencari nafkah", "kebutuhan", "memenuhi kebutuhan"] },
+    { q: "Ibu merawat dan menjaga ... di rumah.", level: "MOTS", keys: ["anak", "keluarga", "rumah", "kita"] },
+    { q: "Kamu sebagai anak berperan untuk ... orang tua.", level: "MOTS", keys: ["membantu", "menghormati", "mematuhi", "menyayangi"] },
+    { q: "Kakek dan nenek adalah ... dari ayah dan ibu.", level: "MOTS", keys: ["orang tua", "orangtua"] },
+    { q: "Bibi adalah ... dari ayah atau ibu.", level: "MOTS", keys: ["saudara perempuan", "adik perempuan", "kakak perempuan", "saudara"] },
+    { q: "Paman adalah ... dari ayah atau ibu.", level: "MOTS", keys: ["saudara laki", "adik laki", "kakak laki", "saudara"] },
+    { q: "Silsilah keluarga menunjukkan ... keluarga.", level: "HOTS", keys: ["garis keturunan", "asal usul", "keturunan", "hubungan"] },
+    { q: "Sebutkan satu keluarga ayah selain ayah dan ibu!", level: "HOTS", keys: ["kakek", "nenek", "paman", "bibi", "sepupu"] },
+    { q: "Sebutkan satu keluarga ibu selain ayah dan ibu!", level: "MOTS", keys: ["kakek", "nenek", "paman", "bibi", "sepupu"] },
+    { q: "Mengapa kita harus membantu anggota keluarga?", level: "HOTS", keys: ["rukun", "ringan", "sayang", "bahagia", "kasih", "meringankan", "harmonis"] }
+  ];
+
+  // Render Soal PG
+  const pgContainer = document.getElementById("pgContainer");
+  soalPG.forEach((item, idx) => {
+    let imgHTML = "";
+    if (item.hasImage) {
+      imgHTML = `
+        <div class="illustration-box">
+          <svg width="210" height="115" viewBox="0 0 240 130" xmlns="http://www.w3.org/2000/svg">
+            <!-- Ayah -->
+            <circle cx="60" cy="42" r="20" fill="#fed7aa"/>
+            <path d="M40 38 Q60 15 80 38" fill="#1e293b"/>
+            <rect x="35" y="65" width="50" height="55" rx="14" fill="#3b82f6"/>
+            <circle cx="53" cy="40" r="2.5" fill="#000"/><circle cx="67" cy="40" r="2.5" fill="#000"/>
+            <path d="M53 48 Q60 54 67 48" stroke="#000" stroke-width="2" fill="none"/>
+            <!-- Ibu -->
+            <circle cx="180" cy="44" r="19" fill="#fed7aa"/>
+            <path d="M158 45 Q180 12 202 45 L205 75 L155 75 Z" fill="#451a03"/>
+            <circle cx="180" cy="45" r="17" fill="#fed7aa"/>
+            <rect x="157" y="66" width="46" height="54" rx="14" fill="#f472b6"/>
+            <circle cx="174" cy="43" r="2.5" fill="#000"/><circle cx="186" cy="43" r="2.5" fill="#000"/>
+            <path d="M174 50 Q180 55 186 50" stroke="#000" stroke-width="2" fill="none"/>
+            <!-- Anak -->
+            <circle cx="120" cy="62" r="16" fill="#fed7aa"/>
+            <path d="M104 58 Q120 38 136 58" fill="#1e293b"/>
+            <rect x="100" y="80" width="40" height="40" rx="12" fill="#22c55e"/>
+            <circle cx="115" cy="60" r="2" fill="#000"/><circle cx="125" cy="60" r="2" fill="#000"/>
+            <path d="M115 67 Q120 72 125 67" stroke="#000" stroke-width="2" fill="none"/>
+          </svg>
+          <div style="font-size:0.8rem; color:#854d0e; font-weight:700;">Ilustrasi Keluarga Inti</div>
+        </div>
+      `;
+    }
+
+    const optsHTML = item.opts.map((opt, oIdx) => `
+      <label class="option-label">
+        <input type="radio" name="pg_${idx}" value="${oIdx}" required>
+        <span>${opt}</span>
+      </label>
+    `).join("");
+
+    pgContainer.innerHTML += `
+      <div class="question-item">
+        <div class="q-header">
+          <span>${idx + 1}. ${item.q}</span>
+          <span class="level-tag ${item.level === 'HOTS' ? 'hots' : ''}">${item.level}</span>
+        </div>
+        ${imgHTML}
+        <div class="options">${optsHTML}</div>
+      </div>
+    `;
+  });
+
+  // Render Soal Isian
+  const isianContainer = document.getElementById("isianContainer");
+  soalIsian.forEach((item, idx) => {
+    isianContainer.innerHTML += `
+      <div class="question-item">
+        <div class="q-header">
+          <span>${idx + 1}. ${item.q}</span>
+          <span class="level-tag ${item.level === 'HOTS' ? 'hots' : ''}">${item.level}</span>
+        </div>
+        <input type="text" name="isian_${idx}" class="input-text" placeholder="Tulis jawabanmu di sini..." required>
+      </div>
+    `;
+  });
+
+  // Proses Submit & Koreksi
+  document.getElementById("quizForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const nama = document.getElementById("namaSiswa").value.trim();
+    const kelas = document.getElementById("kelasSiswa").value.trim();
+    const btn = document.getElementById("submitBtn");
+
+    btn.disabled = true;
+    btn.textContent = "Sedang Mengirim Nilai...";
+
+    // Hitung PG
+    let benarPG = 0;
+    soalPG.forEach((item, idx) => {
+      const selected = document.querySelector(`input[name="pg_${idx}"]:checked`);
+      if (selected && parseInt(selected.value) === item.ans) {
+        benarPG++;
+      }
+    });
+
+    // Hitung Isian (pencocokan kata kunci)
+    let benarIsian = 0;
+    let detailIsianArr = [];
+    soalIsian.forEach((item, idx) => {
+      const val = document.querySelector(`input[name="isian_${idx}"]`).value.trim();
+      const valLower = val.toLowerCase();
+      const isMatch = item.keys.some(k => valLower.includes(k));
+      if (isMatch) benarIsian++;
+      detailIsianArr.push(`${idx + 1}:${val}`);
+    });
+
+    // Total 25 soal -> Nilai skala 100
+    const nilaiAkhir = Math.round(((benarPG + benarIsian) / 25) * 100);
+
+    // Tampilkan Modal
+    document.getElementById("resNama").textContent = `${nama} (${kelas})`;
+    document.getElementById("resSkor").textContent = nilaiAkhir;
+    document.getElementById("resDetail").textContent = `Pilihan Ganda Benar: ${benarPG}/15 | Isian Benar: ${benarIsian}/10`;
+    document.getElementById("resultModal").style.display = "flex";
+
+    // Kirim ke Google Sheets
+    const syncStatus = document.getElementById("syncStatus");
+    if (!SCRIPT_URL || SCRIPT_URL.includes("PASTE_URL")) {
+      syncStatus.textContent = "⚠️ URL Google Apps Script belum dipasang.";
+      return;
+    }
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nama: nama,
+          kelas: kelas,
+          skorPG: `${benarPG}/15`,
+          skorIsian: `${benarIsian}/10`,
+          nilaiAkhir: nilaiAkhir,
+          detailIsian: detailIsianArr.join(" | ")
+        })
+      });
+      syncStatus.textContent = "✅ Nilai berhasil terkirim ke buku nilai guru!";
+    } catch (err) {
+      syncStatus.textContent = "❌ Gagal mengirim ke server, silakan screenshot layar ini.";
+    }
+  });
+</script>
+
+</body>
+</html>
